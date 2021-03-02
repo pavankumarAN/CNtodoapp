@@ -1,4 +1,5 @@
 const TODO = require('../models/todo');
+// This function will list the all todos from database if exists
 module.exports.home = (req, res) => {
     TODO.find({}, (err, TODOS) => {
         if (err) {
@@ -11,6 +12,7 @@ module.exports.home = (req, res) => {
     });
 };
 
+// This function will create a todo as model
 module.exports.createtodo = (req, res) => {
     TODO.create(req.body, (err, todo) => {
         if (err) {
@@ -22,6 +24,7 @@ module.exports.createtodo = (req, res) => {
     });
 };
 
+// This function will delete a todo after clicking on delete icon
 module.exports.deletetodo = (req, res) => {
     const id = req.query.id;
 

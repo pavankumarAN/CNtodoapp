@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Todo basic schema for storing in database
 const TODOSchema = new mongoose.Schema({
     description: {
         type:String,

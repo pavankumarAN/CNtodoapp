@@ -11,10 +11,14 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('assets'));
+// Here I have used bootstrap for better look
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')))
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')))
+
+// This is master route
 app.use('/', require('./routes'));
 
+// Launching application
 app.listen(PORT, (err) => {
     if (err) {
         console.log(`Application is not able to launch - ${err}`);
