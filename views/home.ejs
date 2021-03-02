@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <!-- <link rel="stylesheet" href="/css/home.css"> -->
+
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <div class="container my-5">
+        <form action="/create-todo" class="g-3 needs-validation" method="post">
+            <div class="row">
+                <div class="text-center">
+                    <h1>Todo app</h1>
+                    <hr class="hrline">
+                </div>
+                <div class="mb-1">
+                    <input class="form-control p-4 text-center shadow-none" type="text" name="description"
+                        id="description" placeholder="Plese enter description" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <select class="form-select shadow-none p-4" aria-label="Default select example" name="jobtype" required>
+                        <option value="PLUMBING">PLUMBING</option>
+                        <option value="FLOORING">FLOORING</option>
+                        <option value="WASHING">WASHING</option>
+                        <option value="GROCERY">GROCERY</option>
+                    </select>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <input class="form-control shadow-none col-md-12 col-lg-12 p-4 float-end" type="date" name="date"
+                        id="date" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary shadow-none col-md-3 m-3 text-center"><i
+                            class="bi bi-plus-circle mx-2"></i>ADD TASK</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <ul class="list-group">
+                <% for(let i of todosList) { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <h2 class="m-2"> <%= i.jobtype%> <span class="badge bg-dark"> <%= i.date%> </span> </h2>
+                        <h3><%= i.description %> </h3>
+                        <a href="/delete-todo/?id=<%=i._id%>"><i class="bi bi-x-circle btn"></i></a>
+                    </li>
+                    <%} %> 
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
