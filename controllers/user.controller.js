@@ -1,3 +1,4 @@
+const User = require('../models/user');
 const USER = require('../models/user');
 
 module.exports.signup = (req, res) => {
@@ -37,5 +38,22 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.createSession = (req, res) => {
-    //  Todo
+    User.findOne({ email: req.body.email }, (err, user) => {
+        if (err) {
+            console.log(`User is not found - ${err}`);
+            return;
+        }
+        if (user) {
+            if (req.body.password !== user.password) {
+                console.log(`Password not matched`);
+                return res.redirect('/users/signin');
+            }else {
+                res.cookie(user._id);
+                return res.redirect('/');
+            }
+        } else {
+            console.log(`User not found`);
+            return res.redirect('/users/signup');
+        }
+    });
 };
