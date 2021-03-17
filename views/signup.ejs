@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <div class="container my-5">
+        <form action="/users/create" method="post">
+            <div class="m-3 text-center">
+                <h1>Sign-Up</h1>
+            </div>
+            <div class="m-3">
+                <input type="text" class="form-control p-3 max-vw-50 text-center border border-info shadow-none" name="name"
+                    id="name" placeholder="Please enter your name" required>
+            </div>
+            <div class="m-3">
+                <input type="email" class="form-control p-3 max-vw-50 text-center border border-info shadow-none" name="email"
+                    id="email" placeholder="Please enter your email" required>
+            </div>
+            <div class="m-3">
+                <input type="password" class="form-control p-3 max-vw-50 text-center border border-info shadow-none" name="password"
+                    id="password" placeholder="Please enter your password" required>
+            </div>
+            <div class="m-3">
+                <input type="password" class="form-control p-3 max-vw-50 text-center border border-info shadow-none" name="confirm_password"
+                    id="confirm_password" placeholder="Confirm Password" required>
+            </div>
+            <div class="m-3">
+                
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary shadow-none col-md-3 m-3 text-center">Sign-Up</button>
+                        <button type="reset" class="btn btn-danger shadow-none col-md-3 m-3 text-center">Reset</button>
+                    </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
