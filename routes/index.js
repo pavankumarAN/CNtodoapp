@@ -12,5 +12,6 @@ router.post('/create-todo', homeController.createtodo);
 router.get('/delete-todo', homeController.deletetodo);
 
 router.use('/users', require('./user'));
+router.use('/post', require('./post'));
 
 module.exports = router;
