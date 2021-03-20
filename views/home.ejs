@@ -48,17 +48,18 @@
                 </div>
             </div>
         </form>
-        <div class="row">
-            <ul class="list-group">
-                <% for(let i of todosList) { %>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <h2 class="m-2"> <%= i.jobtype%> <span class="badge bg-dark"> <%= i.date%> </span> </h2>
-                        <h3><%= i.description %> </h3>
-                        <a href="/delete-todo/?id=<%=i._id%>"><i class="bi bi-x-circle btn"></i></a>
-                    </li>
-                    <%} %> 
-            </ul>
-        </div>
+        <!-- <div class="row mx-1 text-center">
+            
+        </div> -->
+        <ul class="list-group">
+            <% for(let i of todosList) { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <h2 class="m-2"> <%= i.jobtype%> <span class="badge bg-dark"> <%= i.date%> </span> </h2>
+                    <h3><%= i.description %> </h3>
+                    <a href="/delete-todo/?id=<%=i._id%>"><i class="bi bi-x-circle btn"></i></a>
+                </li>
+                <%} %> 
+        </ul>
     </div>
 </body>
 

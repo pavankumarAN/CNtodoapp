@@ -1,12 +1,37 @@
 const USER = require('../models/user');
 
+module.exports.profile = (req, res) => {
+    if (req.cookies.user_id) {
+        USER.findById(req.cookies.user_id, (err, user) => {
+            if (user) {
+                return res.render('userprofile', {
+                    title: "User Profile",
+                    user: user
+                })
+            } else {
+                return res.redirect('/users/signin');
+            }
+        });
+    } else {
+        return res.redirect('/users/signin');
+    }
+}
+
 module.exports.signup = (req, res) => {
+
+    if (req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
     return res.render('signup', {
         title: 'Sign-Up'
     });
 };
 
 module.exports.signin = (req, res) => {
+    
+    if (req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
     return res.render('signin', {
         title: 'Sign-In'
     });
@@ -37,5 +62,5 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.createSession = (req, res) => {
-    //  Todo
+    return res.redirect('/');
 };

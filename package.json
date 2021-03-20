@@ -8,23 +8,22 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pavankumarAN/CNtodoapp.git"
+    "type": "git"
   },
-  "author": "Pavankumar A N",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pavankumarAN/CNtodoapp/issues"
-  },
-  "homepage": "https://github.com/pavankumarAN/CNtodoapp#readme",
+  "bugs": {},
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
     "bootstrap": "^5.0.0-beta2",
     "bootstrap-icons": "^1.4.0",
+    "connect-mongo": "^4.4.0",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "mongoose": "^5.11.18",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "routes": "^2.1.0",
     "tailwindcss": "^2.0.3"
   }

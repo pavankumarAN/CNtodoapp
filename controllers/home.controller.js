@@ -5,6 +5,7 @@ module.exports.home = (req, res) => {
         if (err) {
             console.log(`Not able to fetch TODOS - ${err}`);
         }
+        res.cookie('user_id', 25);
         return res.render('home', {
             title: 'TODO APP',
             todosList: TODOS
