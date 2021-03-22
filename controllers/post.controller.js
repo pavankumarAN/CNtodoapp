@@ -1,6 +1,6 @@
-const POSTCOMMENT = require('../models/post');
+const POST = require('../models/post');
 module.exports.comment = (req,res) => {
-    POSTCOMMENT.find({user:req.user.id}, (err, commentList) => {
+    POST.find({user:req.user.id}, (err, commentList) => {
         if(err) {
             console.log(`Not able to fetch comments - ${err}`);
         }
@@ -13,7 +13,7 @@ module.exports.comment = (req,res) => {
 }
 
 module.exports.createpost = (req, res) => {
-    POSTCOMMENT.create({
+    POST.create({
         content:req.body.content,
         user:req.user.id
     }, (err, post) => {

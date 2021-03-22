@@ -25,6 +25,13 @@
                     <h3 class="m-2"><%= i.content %> </h3>
                     <h4 class="m-2"><%= i.user %> </h4>
                 </li>
+                <% if(locals.user) {%> 
+                <form action="/comments/create" method="post">
+                    <input type="text" name="content" id="comment">
+                    <input type="hidden" name="post" value="<%= i._id %>">
+                    <input type="submit" value="Add Comment">
+                </form>
+                <% } %> 
                 <%} %> 
         </ul>
     </div>
