@@ -4,7 +4,7 @@ module.exports.comment = (req,res) => {
         if(err) {
             console.log(`Not able to fetch comments - ${err}`);
         }
-        console.log(commentList);
+        // console.log(commentList);
             return res.render('post', {
                 heading:'Post Comments',
                 commentList : commentList
