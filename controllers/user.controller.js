@@ -1,20 +1,29 @@
 const USER = require('../models/user');
 
 module.exports.profile = (req, res) => {
-    if (req.cookies.user_id) {
-        USER.findById(req.cookies.user_id, (err, user) => {
-            if (user) {
-                return res.render('userprofile', {
-                    title: "User Profile",
-                    user: user
-                })
-            } else {
-                return res.redirect('/users/signin');
-            }
-        });
-    } else {
-        return res.redirect('/users/signin');
-    }
+    console.log(req.cookies);
+    // if (req.cookies.user_id) {
+    //     USER.findById(req.cookies.user_id, (err, user) => {
+    //         if(err) {
+    //             console.log(`Error in fetching authenticated user - ${err}`);
+    //             return;
+    //         }
+    //         if (user) {
+    //             return res.render('userprofile', {
+    //                 title: "User Profile",
+    //                 user: user
+    //             })
+    //         } else {
+    //             return res.redirect('/users/signin');
+    //         }
+    //     });
+    // } else {
+    //     return res.redirect('/users/signin');
+    // }
+    return res.render('userprofile', {
+        title: "User Profile",
+        // user: user
+    })
 }
 
 module.exports.signup = (req, res) => {
@@ -28,7 +37,7 @@ module.exports.signup = (req, res) => {
 };
 
 module.exports.signin = (req, res) => {
-    
+
     if (req.isAuthenticated()) {
         return res.redirect('/users/profile');
     }
@@ -64,3 +73,9 @@ module.exports.create = (req, res) => {
 module.exports.createSession = (req, res) => {
     return res.redirect('/');
 };
+
+module.exports.destroySession = (req, res) => {
+    req.logout();
+
+    return res.redirect('/users/signin');
+}
