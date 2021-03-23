@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,32 +9,45 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <title>Posts</title>
 </head>
-<body>
-    <% if(locals.user) {%> 
-    <form action="/post/createpost" method="post" class="">
-        <h1><%= heading %> </h1>
-        <textarea name="content" id="content" cols="30" rows="10" class="form-control col-md-8 col-lg-8"></textarea>
-        <input type="submit" value="POST" class="btn btn-primary shadow-none col-md-3 m-3 text-center">
-    </form>
-    <% } %> 
 
-    <div class="container">
-        <ul class="list-group">
-            <% for(let i of commentList) { %>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <h2 class="m-2"> <%= i.createdAt%>  </h2>
-                    <h3 class="m-2"><%= i.content %> </h3>
-                    <h4 class="m-2"><%= i.user %> </h4>
-                </li>
-                <% if(locals.user) {%> 
-                <form action="/comments/create" method="post">
-                    <input type="text" name="content" id="comment">
-                    <input type="hidden" name="post" value="<%= i._id %>">
-                    <input type="submit" value="Add Comment">
-                </form>
-                <% } %> 
-                <%} %> 
-        </ul>
-    </div>
+<body>
+    <% if(locals.user) {%>
+        <form action="/post/createpost" method="post" class="">
+            <h1>
+                <%= heading %>
+            </h1>
+            <textarea name="content" id="content" cols="30" rows="10" class="form-control col-md-8 col-lg-8"></textarea>
+            <input type="submit" value="POST" class="btn btn-primary shadow-none col-md-3 m-3 text-center">
+        </form>
+        <% } %>
+
+            <div class="container">
+                <ul class="list-group">
+                    <% for(let post of allpostsList) { %>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <h2 class="m-2">
+                                <%= post.createdAt%>
+                            </h2>
+                            <h3 class="m-2">
+                                <%= post.content %>
+                            </h3>
+                            <h4 class="m-2">
+                                <%= post.user %>
+                            </h4>
+                            <% if(locals.user && locals.user.id==post.user) {%>
+                                <a href="/post/destroypost/?id=<%=post.id%>"><i class="bi bi-x-circle btn"></i></a>
+                                <% } %>
+                        </li>
+                        <% if(locals.user) {%>
+                            <form action="/comments/create" method="post">
+                                <input type="text" name="content" id="comment">
+                                <input type="hidden" name="post" value="<%= post._id %>">
+                                <input type="submit" value="Add Comment">
+                            </form>
+                            <% } %>
+                                <%} %>
+                </ul>
+            </div>
 </body>
+
 </html>
