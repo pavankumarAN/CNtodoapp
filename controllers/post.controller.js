@@ -1,29 +1,48 @@
 const POST = require('../models/post');
 const COMMENT = require('../models/comment');
 
-module.exports.allposts = (req, res) => {
-    POST.find({ user: req.user.id }, (err, allpostsList) => {
-        if (err) {
-            console.log(`Not able to fetch comments - ${err}`);
-        }
-        // console.log(commentList);
+module.exports.allposts = async (req, res) => {
+    // POST.find({ user: req.user.id }, (err, allpostsList) => {
+    //     console.log(allpostsList);
+    //     if (err) {
+    //         console.log(`Not able to fetch comments - ${err}`);
+    //     }
+    //     // console.log(commentList);
+    //     return res.render('post', {
+    //         heading: 'Posts',
+    //         allpostsList: allpostsList
+    //     });
+    // });
+    try {
+        let posts = await POST.find({ user: req.user.id });
         return res.render('post', {
             heading: 'Posts',
-            allpostsList: allpostsList
+            allpostsList: posts
         });
-    });
+    } catch (error) {
+        console.log(`Not able to fetch comments - ${error}`);
+    }
 }
 
-module.exports.createpost = (req, res) => {
-    POST.create({
-        content: req.body.content,
-        user: req.user._id
-    }, (err, post) => {
-        if (err) {
-            console.log(`Not able to post - ${err}`);
-        }
+module.exports.createpost = async (req, res) => {
+    // POST.create({
+    //     content: req.body.content,
+    //     user: req.user._id
+    // }, (err, post) => {
+    //     if (err) {
+    //         console.log(`Not able to post - ${err}`);
+    //     }
+    //     return res.redirect('back');
+    // });
+    try {
+        await POST.create({
+            content: req.body.content,
+            user: req.user._id
+        })
         return res.redirect('back');
-    });
+    } catch (error) {
+        console.log(`Not able to post - ${err}`);
+    }
 }
 
 module.exports.destroyPost = (req, res) => {
@@ -32,7 +51,7 @@ module.exports.destroyPost = (req, res) => {
         console.log(post);
         if (post.user == req.user.id) {
             COMMENT.deleteMany({ post: req.query.id }, (err) => {
-                if (err && err!==null) {
+                if (err && err !== null) {
                     console.log(`Not able to delete comments - ${err}`);
                     return;
                 }

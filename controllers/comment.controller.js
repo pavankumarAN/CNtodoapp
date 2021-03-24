@@ -26,3 +26,7 @@ module.exports.create = (req, res) => {
         }
     });
 };
+
+module.exports.listComments = (req, res) => {
+    
+};
