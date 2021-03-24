@@ -13,6 +13,9 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 
 const MongoStore = require('connect-mongo')(session);
+//Flash message
+const flash = require('connect-flash');
+const flashMiddleware = require('./config/flashMiddleware');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -44,7 +47,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
-
+app.use(flash());
+app.use(flashMiddleware.setFlash);
 
 // This is master route
 app.use('/', require('./routes'));

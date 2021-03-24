@@ -41,6 +41,7 @@ module.exports.signin = (req, res) => {
     if (req.isAuthenticated()) {
         return res.redirect('/users/profile');
     }
+    // req.flash('success', 'Logged in successfully');
     return res.render('signin', {
         title: 'Sign-In'
     });
@@ -71,6 +72,7 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.createSession = (req, res) => {
+    req.flash('success', 'Logged in successfully')
     return res.redirect('/');
 };
 
