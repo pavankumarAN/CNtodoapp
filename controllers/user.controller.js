@@ -57,10 +57,14 @@ module.exports.create = (req, res) => {
             return;
         }
         if (!user) {
+            console.log(req.body);
             USER.create(req.body, (err, user) => {
                 if (err) {
                     console.log(`Error in creating user ${err}`);
                     return;
+                }
+                if(req.file) {
+                    user.avatar = USER.avatarPath +"/"+req.file.filename;
                 }
                 return res.redirect('/users/signin');
             });
