@@ -11,19 +11,23 @@
 </head>
 
 <body>
+    <%- include('_header') %> 
     <% if(locals.user) {%>
-        <form action="/post/createpost" method="post" class="">
-            <h1>
-                <%= heading %>
-            </h1>
-            <textarea name="content" id="content" cols="30" rows="10" class="form-control col-md-8 col-lg-8"></textarea>
-            <input type="submit" value="POST" class="btn btn-primary shadow-none col-md-3 m-3 text-center">
-        </form>
+        <div class="container text-center">
+            <form action="/post/createpost" method="post" class="container my-5">
+                <h1 class="text-center">
+                    <%= heading %>
+                </h1>
+                <textarea name="content" id="content" cols="30" rows="10" class="form-control col-md-8 col-lg-8"></textarea>
+                <input type="submit" value="POST" class="btn btn-primary shadow-none col-md-3 m-3 text-center">
+            </form>
+        </div>
+        
         <% } %>
 
             <div class="container">
                 <ul class="list-group">
-                    <% for(post of allpostsList) { %>
+                    <% for( post of allpostsList) { %>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <h2 class="m-2">
                                 <%= post.createdAt%>

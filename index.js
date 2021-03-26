@@ -11,6 +11,7 @@ const app = express();
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const passportJWT = require('./config/passport-jwt-strategy');
 
 const MongoStore = require('connect-mongo')(session);
 
@@ -48,6 +49,7 @@ app.use(passport.setAuthenticatedUser);
 
 // This is master route
 app.use('/', require('./routes'));
+
 
 // Launching application
 app.listen(PORT, (err) => {

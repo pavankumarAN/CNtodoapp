@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile</title>
 </head>
+
 <body>
-    <h1>
-        Codeial / Profile Page
-    </h1>
+    <%- include('_header') %>
+        <div class="card my-5">
+            <div class="container my-5">
+                <h1 class="card-header">
+                    User Information
+                </h1>
+                <div class="card-body">
+                    <h3 class="card-title">Name: <%= user.name %></h3>
+                    <h6>Email: <%= user.email %></h6>
+                </div>
 
-    <p>Name: <%= user.name %></p>
-    <p>Email: <%= user.email %></p>
+            </div>
 
+        </div>
 </body>
+
 </html>
